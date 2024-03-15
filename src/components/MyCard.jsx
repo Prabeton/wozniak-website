@@ -50,8 +50,9 @@ const MyCard = () => {
           <Img src={MyImage} alt="myFoto" />
           <Info>
             <div>Przemysław Woźniak</div>
+            <div>www.wozniak.website</div>
+            <div>e-mail: przemyslaw@wozniak.website</div>
             <div>tel: 517-560-254</div>
-            <div>email: 3846205@gmail.com</div>
             <div>location: Ozorków, Poland</div>
             <div>age: 46</div>
           </Info>
