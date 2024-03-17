@@ -2,13 +2,9 @@ import styled from "styled-components";
 import MyImage from "../assets/png/przemKwadrat.png";
 
 const Container = styled.div`
-  width: 100%;
-  min-height: 750px;
-  max-width: 1920px;
-  border-top: 1px solid #333;
-  border-bottom: 1px solid #333;
+  height: 550px;
+  width: 1466px;
   border-radius: 4px;
-  margin-top: 30px;
   padding-top: 30px;
   display: flex;
   justify-content: start;
@@ -16,7 +12,7 @@ const Container = styled.div`
 `;
 const Card = styled.div`
   width: 500px;
-  height: 400px;
+  height: 220px;
   border: 1px solid #333;
   border-radius: 20px;
   display: flex;
@@ -50,7 +46,7 @@ const MyCard = () => {
           <Img src={MyImage} alt="myFoto" />
           <Info>
             <div>Przemysław Woźniak</div>
-            <div>www.wozniak.website</div>
+            <div>- web developer -</div>
             <div>e-mail: przemyslaw@wozniak.website</div>
             <div>tel: 517-560-254</div>
             <div>location: Ozorków, Poland</div>

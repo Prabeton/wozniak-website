@@ -3,9 +3,9 @@ import PrabetonSVG from "../assets/svg/PrabetonSVG";
 
 const Container = styled.div`
   margin-top: 10px;
-  width: 1920px;
+  width: 1466x;
   height: 65px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #68809b;
   border-radius: 4px;
   box-sizing: border-box;
   display: flex;
@@ -32,7 +32,7 @@ const Container = styled.div`
 const Navbar = () => {
   return (
     <Container>
-      <PrabetonSVG size="50" fill="#333" />
+      <PrabetonSVG size="50" fill="#68809b" />
     </Container>
   );
 };
