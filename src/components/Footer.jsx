@@ -18,12 +18,13 @@ const Container = styled.div`
 const PowerByPrabeton = styled.div`
   font-family: Inter;
   color: #68809b;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 10px;
+  font-weight: 400;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 7px;
 `;
 
 const Footer = () => {
@@ -32,7 +33,7 @@ const Footer = () => {
       <Container>
         <PowerByPrabeton>
           <PrabetonSVG size="30" fill="#68809b" />
-          <div>power by prabeton</div>
+          <div>W tym momencie strona korzysta z serwerów Vercel</div>
         </PowerByPrabeton>
       </Container>
     </>
