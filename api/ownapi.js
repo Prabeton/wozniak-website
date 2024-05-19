@@ -1,23 +1,10 @@
-// ownapi
-
 import axios from "axios";
-import OpenAI from "openai";
-import express from "express";
+import { Configuration, OpenAIApi } from "openai";
 
-// const AIDEVS_API_KEY = process.env.AIDEVS_API_KEY;
-
-const openai = new OpenAI({
+const configuration = new Configuration({
   apiKey: "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",
 });
-
-const app = express();
-const port = 3034;
-
-app.use(express.json());
-
-app.get("/api", (req, res) => {
-  res.send("Hello World!");
-});
+const openai = new OpenAIApi(configuration);
 
 const getToken = async () => {
   try {
@@ -44,7 +31,7 @@ const getTask = async (token) => {
 };
 
 const perform_AI_completion = async (question) => {
-  const completion = await openai.chat.completions.create({
+  const completion = await openai.createChatCompletion({
     model: "gpt-4",
     messages: [
       {
@@ -61,7 +48,7 @@ const perform_AI_completion = async (question) => {
     top_p: 1,
   });
 
-  return completion.choices[0].message.content;
+  return completion.data.choices[0].message.content;
 };
 
 const postAnswer = async (token, textAnswer) => {
@@ -79,24 +66,29 @@ const postAnswer = async (token, textAnswer) => {
   }
 };
 
-(async () => {
-  try {
-    app.listen(port, () => {
-      console.log(`Listening on port ${port}...`);
-    });
+export default async function handler(req, res) {
+  if (req.method === "GET") {
+    res.status(200).json({ message: "Hello from API!" });
+  } else if (req.method === "POST") {
+    try {
+      const token = await getToken();
+      console.log("(main) getToken:", token);
 
-    const token = await getToken();
-    console.log("(main) getToken:", token);
+      const task = await getTask(token);
+      console.log("(main) getTask:", task);
 
-    const task = await getTask(token);
-    console.log("(main) getTask:", task);
+      const AI_completion_result = await perform_AI_completion(task);
+      console.log("(main) AI_completion_result:", AI_completion_result);
 
-    // const AI_completion_result = await perform_AI_completion(task);
-    // console.log("(main) AI_completion_result:", AI_completion_result);
+      const resultTask = await postAnswer(token, AI_completion_result);
+      console.log(resultTask);
 
-    // const resultTask = await postAnswer(token, task);
-    // console.log(resultTask);
-  } catch (error) {
-    console.error("(main) Wystąpił błąd:", error);
+      res.status(200).json({ result: resultTask });
+    } catch (error) {
+      console.error("(main) Wystąpił błąd:", error);
+      res.status(500).json({ error: error.message });
+    }
+  } else {
+    res.status(405).json({ error: "Method Not Allowed" });
   }
-})();
+}
