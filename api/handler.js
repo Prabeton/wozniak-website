@@ -77,11 +77,11 @@ export default async function handler(req, res) {
       const task = await getTask(token);
       console.log("(main) getTask:", task);
 
-      const AI_completion_result = await perform_AI_completion(task);
-      console.log("(main) AI_completion_result:", AI_completion_result);
+      // const AI_completion_result = await perform_AI_completion(task);
+      // console.log("(main) AI_completion_result:", AI_completion_result);
 
-      const resultTask = await postAnswer(token, AI_completion_result);
-      console.log(resultTask);
+      // const resultTask = await postAnswer(token, AI_completion_result);
+      // console.log(resultTask);
 
       res.status(200).json({ result: resultTask });
     } catch (error) {
