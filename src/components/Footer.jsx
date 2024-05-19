@@ -33,7 +33,7 @@ const Footer = () => {
       <Container>
         <PowerByPrabeton>
           <PrabetonSVG size="30" fill="#68809b" />
-          <div>W tym momencie strona korzysta z serwerów Vercel</div>
+          <div>Power by Vercel</div>
         </PowerByPrabeton>
       </Container>
     </>
