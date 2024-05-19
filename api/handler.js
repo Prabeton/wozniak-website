@@ -1,10 +1,10 @@
 import axios from "axios";
-import { Configuration, OpenAIApi } from "openai";
+import OpenAI from "openai";
 
 const configuration = new Configuration({
   apiKey: "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",
 });
-const openai = new OpenAIApi(configuration);
+const openai = new OpenAI(configuration);
 
 const getToken = async () => {
   try {
@@ -31,7 +31,7 @@ const getTask = async (token) => {
 };
 
 const perform_AI_completion = async (question) => {
-  const completion = await openai.createChatCompletion({
+  const completion = await openai.chat.completions.create({
     model: "gpt-4",
     messages: [
       {
@@ -48,7 +48,7 @@ const perform_AI_completion = async (question) => {
     top_p: 1,
   });
 
-  return completion.data.choices[0].message.content;
+  return completion.choices[0].message.content;
 };
 
 const postAnswer = async (token, textAnswer) => {
